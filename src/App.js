@@ -24,7 +24,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route exact path="/mern-blog-app/" element={<Login />} />
         {!isLoggedIn ? (
           <>
             <Route path="/login" element={<Login />} />
