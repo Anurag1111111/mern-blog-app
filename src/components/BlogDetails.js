@@ -24,11 +24,14 @@ const BlogDetails = () => {
   };
   const sendRequest = async () => {
     const response = await axios
-      .put(`http://localhost:5000/api/blog/update/${id}`, {
-        title: inputs.title,
-        description: inputs.description,
-        image: inputs.image,
-      })
+      .put(
+        `https://mern-blog-app-backend-ohon.onrender.com/api/blog/update/${id}`,
+        {
+          title: inputs.title,
+          description: inputs.description,
+          image: inputs.image,
+        }
+      )
       .catch((err) => console.log(err));
     const data = await response.data;
     return data;
