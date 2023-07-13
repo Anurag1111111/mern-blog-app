@@ -7,7 +7,9 @@ const UsersBlog = () => {
   const id = localStorage.getItem("userId");
   const sendRequest = async () => {
     const response = await axios
-      .get(`http://localhost:5000/api/blog/user/${id}`)
+      .get(
+        `https://mern-blog-app-backend-ohon.onrender.com/api/blog/user/${id}`
+      )
       .catch((err) => console.log(err));
     const data = await response.data;
     return data;

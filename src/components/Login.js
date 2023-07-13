@@ -24,7 +24,7 @@ const Login = () => {
   const sendRequest = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/user/login`,
+        `https://mern-blog-app-backend-ohon.onrender.com/api/user/login`,
         {
           email: inputs.email,
           password: inputs.password,

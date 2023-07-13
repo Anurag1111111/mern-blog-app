@@ -17,7 +17,7 @@ const BlogDetails = () => {
 
   const fetchDetails = async () => {
     const response = await axios
-      .get(`http://localhost:5000/api/blog/${id}`)
+      .get(`https://mern-blog-app-backend-ohon.onrender.com/api/blog/${id}`)
       .catch((err) => console.log(err));
     const data = await response.data;
     return data;
