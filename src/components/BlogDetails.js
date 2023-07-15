@@ -73,7 +73,7 @@ const BlogDetails = () => {
               padding={3}
               textAlign="center"
             >
-              Post your Blog
+              Update your Blog
             </Typography>
             <InputLabel sx={{ mt: 1, mb: 2 }}>Title</InputLabel>
             <TextField
