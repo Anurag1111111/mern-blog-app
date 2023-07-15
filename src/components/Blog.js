@@ -25,7 +25,7 @@ const Blog = ({ title, description, image, user, isUser, id }) => {
     return data;
   };
   const handleDelete = () => {
-    deleteRequest().then(() => navigate("/blogs"));
+    deleteRequest().then(() => navigate("/blogs/add"));
   };
   const handleEdit = (e) => {
     navigate(`/myblogs/${id}`);
