@@ -28,7 +28,7 @@ const Blog = ({ title, description, image, user, isUser, id }) => {
     const result = window.confirm("Aro you sure!");
     if (result) {
       deleteRequest();
-      window.location.reload();
+      navigate("/myblogs");
     }
   };
   const handleEdit = (e) => {
