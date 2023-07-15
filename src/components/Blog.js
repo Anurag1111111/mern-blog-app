@@ -25,7 +25,15 @@ const Blog = ({ title, description, image, user, isUser, id }) => {
     return data;
   };
   const handleDelete = () => {
-    deleteRequest().then(() => navigate("/blogs/add"));
+    const result = window.confirm("Aro you sure!");
+    if (result) {
+      deleteRequest();
+      if (window.location.pathname === "/blogs") {
+        navigate("/myblogs");
+      } else if (window.location.pathname === "/myblogs") {
+        navigate("/blogs");
+      }
+    }
   };
   const handleEdit = (e) => {
     navigate(`/myblogs/${id}`);
