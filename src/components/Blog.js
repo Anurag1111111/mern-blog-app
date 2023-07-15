@@ -25,10 +25,7 @@ const Blog = ({ title, description, image, user, isUser, id }) => {
     return data;
   };
   const handleDelete = () => {
-    const result = window.confirm("Aro you sure!");
-    if (result) {
-      deleteRequest().then(() => navigate("/blogs"));
-    }
+    deleteRequest().then(() => navigate("/blogs"));
   };
   const handleEdit = (e) => {
     navigate(`/myblogs/${id}`);
