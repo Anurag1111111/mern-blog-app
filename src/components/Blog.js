@@ -29,9 +29,9 @@ const Blog = ({ title, description, image, user, isUser, id }) => {
     if (result) {
       deleteRequest();
       if (window.location.pathname === "/blogs") {
-        navigate("/myblogs");
+        setTimeout(() => navigate("/myblogs"), 2000);
       } else if (window.location.pathname === "/myblogs") {
-        navigate("/blogs");
+        setTimeout(() => navigate("/blogs"), 2000);
       }
     }
   };
