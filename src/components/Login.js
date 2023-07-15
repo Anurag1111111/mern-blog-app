@@ -1,4 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -13,6 +19,7 @@ const Login = () => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -23,6 +30,7 @@ const Login = () => {
 
   const sendRequest = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
         `https://mern-blog-app-backend-ohon.onrender.com/api/user/login`,
         {
@@ -35,6 +43,8 @@ const Login = () => {
     } catch (error) {
       console.log(error.response.data);
       setErrorMessage(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -67,6 +77,7 @@ const Login = () => {
         >
           <Typography variant="h4">Login</Typography>
           <TextField
+            required
             onChange={handleChange}
             name="email"
             value={inputs.email}
@@ -75,6 +86,7 @@ const Login = () => {
             margin="normal"
           />
           <TextField
+            required
             onChange={handleChange}
             name="password"
             value={inputs.password}
@@ -91,8 +103,9 @@ const Login = () => {
             type="submit"
             variant="contained"
             sx={{ borderRadius: 3, margin: 2 }}
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? <CircularProgress size={24} /> : "Submit"}
           </Button>
           <Link to="/register">
             <Button>New Here? Go to Register</Button>

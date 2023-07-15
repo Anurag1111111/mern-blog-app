@@ -1,4 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +18,8 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [isLoading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -22,6 +30,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post(
         `https://mern-blog-app-backend-ohon.onrender.com/api/user/signup`,
         {
@@ -39,6 +48,8 @@ const Register = () => {
       console.log(error.response.data);
       setSuccessMessage("");
       setErrorMessage(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,6 +84,7 @@ const Register = () => {
             </Typography>
           )}
           <TextField
+            required
             onChange={handleChange}
             name="name"
             value={inputs.name}
@@ -80,6 +92,7 @@ const Register = () => {
             margin="normal"
           />
           <TextField
+            required
             onChange={handleChange}
             name="email"
             value={inputs.email}
@@ -88,6 +101,7 @@ const Register = () => {
             margin="normal"
           />
           <TextField
+            required
             onChange={handleChange}
             name="password"
             value={inputs.password}
@@ -99,8 +113,9 @@ const Register = () => {
             type="submit"
             variant="contained"
             sx={{ borderRadius: 3, margin: 2 }}
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? <CircularProgress size={24} /> : "Submit"}
           </Button>
           <Link to="/login">
             <Button>Go to Login</Button>
