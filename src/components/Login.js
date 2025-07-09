@@ -29,24 +29,30 @@ const Login = () => {
   };
 
   const sendRequest = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        `https://mern-blog-app-backend-ohon.onrender.com/api/user/login`,
-        {
-          email: inputs.email,
-          password: inputs.password,
-        }
-      );
-      const data = await response.data;
-      return data;
-    } catch (error) {
-      console.log(error.response.data);
-      setErrorMessage(error.response.data.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    const response = await axios.post(
+      `https://mern-blog-app-backend-ohon.onrender.com/api/user/login`,
+      {
+        email: inputs.email,
+        password: inputs.password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true, 
+      }
+    );
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error?.response?.data);
+    setErrorMessage(error?.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
